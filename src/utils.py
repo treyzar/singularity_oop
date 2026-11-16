@@ -30,4 +30,4 @@ def load_categories(path: str) -> list[Category]:
 if __name__ == "__main__":
     file_path = os.path.join(os.path.dirname(__file__), "..", "data", "products.json")
     for category in load_categories(file_path):
-        print(category.name, len(category.products))
+        print(category.name, len(category.products_list))
