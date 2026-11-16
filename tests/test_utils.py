@@ -14,8 +14,8 @@ def test_create_objects_from_json(products_data):
     categories = create_objects_from_json(products_data)
     assert len(categories) == 2
     assert categories[0].name == "Смартфоны"
-    assert categories[0].products[1].name == "Xiaomi Redmi Note 11"
-    assert categories[1].products[0].price == 123000.0
+    assert categories[0].products_list[1].name == "Xiaomi Redmi Note 11"
+    assert categories[1].products_list[0].price == 123000.0
     assert Category.category_count == 2
     assert Category.product_count == 3
 
