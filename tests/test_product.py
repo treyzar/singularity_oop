@@ -25,6 +25,38 @@ def test_price_setter(phone):
     assert phone.price == 250000.0
 
 
+def test_price_lower_confirmed(phone, monkeypatch):
+    monkeypatch.setattr("builtins.input", lambda _: "y")
+    phone.price = 100000.0
+    assert phone.price == 100000.0
+
+
+@pytest.mark.parametrize("answer", ["n", "", "да"])
+def test_price_lower_cancelled(phone, monkeypatch, capsys, answer):
+    monkeypatch.setattr("builtins.input", lambda _: answer)
+    phone.price = 100000.0
+    assert phone.price == 210000.0
+    assert "Изменение цены отменено" in capsys.readouterr().out
+
+
+def test_price_lower_without_input(phone, monkeypatch):
+    def no_input(_):
+        raise EOFError
+
+    monkeypatch.setattr("builtins.input", no_input)
+    phone.price = 100000.0
+    assert phone.price == 210000.0
+
+
+def test_price_higher_no_question(phone, monkeypatch):
+    def fail(_):
+        raise AssertionError("input не должен вызываться")
+
+    monkeypatch.setattr("builtins.input", fail)
+    phone.price = 300000.0
+    assert phone.price == 300000.0
+
+
 @pytest.mark.parametrize("bad_price", [0, -100])
 def test_price_setter_bad_value(phone, capsys, bad_price):
     phone.price = bad_price

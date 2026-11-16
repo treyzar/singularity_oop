@@ -44,4 +44,14 @@ class Product:
         if new_price <= 0:
             print("Цена не должна быть нулевая или отрицательная")
             return
+
+        if new_price < self.__price:
+            try:
+                answer = input(f"Цена снижается с {self.__price} до {new_price}. Подтвердить? (y/n): ")
+            except EOFError:
+                answer = ""
+            if answer.strip().lower() != "y":
+                print("Изменение цены отменено")
+                return
+
         self.__price = new_price
