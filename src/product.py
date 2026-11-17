@@ -1,4 +1,3 @@
-from types import NotImplementedType
 from typing import Any
 
 
@@ -16,13 +15,10 @@ class Product:
         self.quantity = quantity
 
     def __str__(self) -> str:
-        """Возвращает название, цену и остаток товара."""
         return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
 
-    def __add__(self, other: object) -> float | NotImplementedType:
-        """Складывает полную стоимость остатков двух товаров."""
-        if not isinstance(other, Product):
-            return NotImplemented
+    def __add__(self, other: "Product") -> float:
+        """Общая стоимость двух товаров на складе."""
         return self.price * self.quantity + other.price * other.quantity
 
     @classmethod

@@ -3,20 +3,19 @@ from src.product import Product
 
 
 class CategoryIterator:
-    """Перебирает товары категории в порядке добавления."""
+    """Итератор по товарам категории."""
 
     def __init__(self, category: Category) -> None:
-        self.__products = category.products_list
-        self.__index = 0
+        self.products = category.products_list
+        self.index = 0
 
     def __iter__(self) -> "CategoryIterator":
-        """Возвращает текущий итератор, не сбрасывая его позицию."""
+        self.index = 0
         return self
 
     def __next__(self) -> Product:
-        """Возвращает очередной товар или завершает перебор."""
-        if self.__index >= len(self.__products):
-            raise StopIteration
-        product = self.__products[self.__index]
-        self.__index += 1
-        return product
+        if self.index < len(self.products):
+            product = self.products[self.index]
+            self.index += 1
+            return product
+        raise StopIteration

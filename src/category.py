@@ -19,9 +19,10 @@ class Category:
         Category.product_count += len(self.__products)
 
     def __str__(self) -> str:
-        """Возвращает название категории и общее количество товаров на складе."""
-        quantity = sum(product.quantity for product in self.__products)
-        return f"{self.name}, количество продуктов: {quantity} шт."
+        total = 0
+        for product in self.__products:
+            total += product.quantity
+        return f"{self.name}, количество продуктов: {total} шт."
 
     def add_product(self, product: Product) -> None:
         """Добавляет товар в категорию."""
@@ -31,7 +32,10 @@ class Category:
     @property
     def products(self) -> str:
         """Список товаров категории строкой, по одному товару на строку."""
-        return "".join(f"{product}\n" for product in self.__products)
+        result = ""
+        for product in self.__products:
+            result += f"{product}\n"
+        return result
 
     @property
     def products_list(self) -> list[Product]:
