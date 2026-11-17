@@ -16,12 +16,12 @@ def reset_counters():
 
 @pytest.fixture
 def phone():
-    return Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
+    return Product("Iphone 15", "512 ГБ, Серый космос", 210000.0, 8)
 
 
 @pytest.fixture
 def second_phone():
-    return Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14)
+    return Product("Xiaomi Redmi Note 11", "1024 ГБ, Синий", 31000.0, 14)
 
 
 @pytest.fixture
@@ -41,8 +41,8 @@ def products_data():
             "name": "Смартфоны",
             "description": "Телефоны на любой вкус",
             "products": [
-                {"name": "Iphone 15", "description": "512GB, Gray space", "price": 210000.0, "quantity": 8},
-                {"name": "Xiaomi Redmi Note 11", "description": "1024GB, Синий", "price": 31000.0, "quantity": 14},
+                {"name": "Iphone 15", "description": "512 ГБ, Серый космос", "price": 210000.0, "quantity": 8},
+                {"name": "Xiaomi Redmi Note 11", "description": "1024 ГБ, Синий", "price": 31000.0, "quantity": 14},
             ],
         },
         {

@@ -5,7 +5,7 @@ from src.product import Product
 
 def test_product_init(phone):
     assert phone.name == "Iphone 15"
-    assert phone.description == "512GB, Gray space"
+    assert phone.description == "512 ГБ, Серый космос"
     assert phone.price == 210000.0
     assert phone.quantity == 8
 
@@ -65,24 +65,24 @@ def test_price_setter_bad_value(phone, capsys, bad_price):
 
 
 def test_new_product():
-    data = {"name": "Iphone 15", "description": "512GB, Gray space", "price": 210000.0, "quantity": 8}
+    data = {"name": "Iphone 15", "description": "512 ГБ, Серый космос", "price": 210000.0, "quantity": 8}
     product = Product.new_product(data)
     assert isinstance(product, Product)
     assert product.name == "Iphone 15"
-    assert product.description == "512GB, Gray space"
+    assert product.description == "512 ГБ, Серый космос"
     assert product.price == 210000.0
     assert product.quantity == 8
 
 
 def test_new_product_without_duplicates(phone):
-    data = {"name": "Xiaomi Redmi Note 11", "description": "1024GB, Синий", "price": 31000.0, "quantity": 14}
+    data = {"name": "Xiaomi Redmi Note 11", "description": "1024 ГБ, Синий", "price": 31000.0, "quantity": 14}
     product = Product.new_product(data, [phone])
     assert product is not phone
     assert product.name == "Xiaomi Redmi Note 11"
 
 
 def test_new_product_duplicate_higher_price(phone):
-    data = {"name": "iphone 15", "description": "512GB, Gray space", "price": 220000.0, "quantity": 2}
+    data = {"name": "iphone 15", "description": "512 ГБ, Серый космос", "price": 220000.0, "quantity": 2}
     product = Product.new_product(data, [phone])
     assert product is phone
     assert product.quantity == 10
@@ -90,7 +90,7 @@ def test_new_product_duplicate_higher_price(phone):
 
 
 def test_new_product_duplicate_lower_price(phone):
-    data = {"name": "Iphone 15", "description": "512GB, Gray space", "price": 100000.0, "quantity": 1}
+    data = {"name": "Iphone 15", "description": "512 ГБ, Серый космос", "price": 100000.0, "quantity": 1}
     product = Product.new_product(data, [phone])
     assert product is phone
     assert product.quantity == 9
